@@ -103,23 +103,26 @@ function M.find_node(nodes, fn)
   local function iter(nodes_, fn_)
     local i = 1
     for _, node in ipairs(nodes_) do
-      if fn_(node) then
-        return node, i
-      end
-      if node.open and #node.nodes > 0 then
-        local n, idx = iter(node.nodes, fn_)
-        i = i + idx
-        if n then
-          return n, i
+      if not node.hidden then
+        if fn_(node) then
+          return node, i
         end
-      else
-        i = i + 1
+        if node.open and #node.nodes > 0 then
+          local n, idx = iter(node.nodes, fn_)
+          i = i + idx
+          if n then
+            return n, i
+          end
+        else
+          i = i + 1
+        end
       end
     end
     return nil, i
   end
   local node, i = iter(nodes, fn)
-  i = require("nvim-tree.view").View.hide_root_folder and i - 1 or i
+  i = require("nvim-tree.view").is_root_folder_visible() and i or i - 1
+  i = require("nvim-tree.live-filter").filter and i + 1 or i
   return node, i
 end
 

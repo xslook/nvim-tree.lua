@@ -6,6 +6,7 @@ local help = require "nvim-tree.renderer.help"
 local git = require "nvim-tree.renderer.components.git"
 local core = require "nvim-tree.core"
 local Builder = require "nvim-tree.renderer.builder"
+local live_filter = require "nvim-tree.live-filter"
 
 local api = vim.api
 
@@ -79,6 +80,7 @@ function M.draw()
       :configure_special_map(get_special_files_map())
       :configure_picture_map(picture_map)
       :configure_opened_file_highlighting(vim.g.nvim_tree_highlight_opened_files)
+      :configure_filter(live_filter.filter)
       :build_header(view.is_root_folder_visible(core.get_cwd()))
       :build(core.get_explorer())
       :unwrap()
