@@ -1,4 +1,5 @@
 local utils = require "nvim-tree.utils"
+local log = require "nvim-tree.log"
 
 local git = require "nvim-tree.renderer.components.git"
 local pad = require "nvim-tree.renderer.components.padding"
@@ -102,6 +103,7 @@ end
 
 function Builder:_build_folder(node, padding, git_hl, git_icons_tbl)
   local offset = string.len(padding)
+  log.line("renderer", "_build_folder %s %s %s %s %s", node.link_to, node.absolute_path, node.git_status, git_hl, vim.inspect(git_icons_tbl))
 
   local name = get_folder_name(node)
   local has_children = #node.nodes ~= 0 or node.has_children
@@ -145,6 +147,7 @@ end
 
 function Builder:_build_symlink(node, padding, git_highlight, git_icons_tbl)
   local offset = string.len(padding)
+  log.line("renderer", "_build_symlink %s %s %s %s %s", node.link_to, node.absolute_path, node.git_status, git_highlight, vim.inspect(git_icons_tbl))
 
   local icon = icons.i.symlink
   local arrow = icons.i.symlink_arrow
@@ -186,6 +189,7 @@ end
 
 function Builder:_build_file(node, padding, git_highlight, git_icons_tbl)
   local offset = string.len(padding)
+  log.line("renderer", "_build_file %s %s %s %s %s", node.link_to, node.absolute_path, node.git_status, git_highlight, vim.inspect(git_icons_tbl))
 
   local icon = self:_build_file_icon(node, offset)
 
