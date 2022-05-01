@@ -3,8 +3,8 @@ local M = {}
 function M.get_config()
   local show_icons = vim.g.nvim_tree_show_icons or { git = 1, folders = 1, files = 1, folder_arrows = 1 }
   local icons = {
-    default = "",
-    symlink = "",
+    default = "●",
+    symlink = "○",
     git_icons = {
       unstaged = "✗",
       staged = "✓",
@@ -15,12 +15,12 @@ function M.get_config()
       ignored = "◌",
     },
     folder_icons = {
-      arrow_closed = "-",
+      arrow_closed = "▸",
       arrow_open = "▿",
-      default = "■",
-      open = "□",
-      empty = "◇",
-      empty_open = "▹",
+      default = "▶",
+      open = "▼",
+      empty = "▷",
+      empty_open = "▽",
       symlink = "■",
       symlink_open = "□",
     },
