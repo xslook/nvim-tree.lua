@@ -386,7 +386,7 @@ local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
     full_name = false,
     root_folder_label = ":~:s?$?/..?",
     indent_width = 2,
-    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "go.mod", "package.json" },
     symlink_destination = true,
     highlight_git = "none",
     highlight_diagnostics = "none",
@@ -408,7 +408,7 @@ local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
     icons = {
       web_devicons = {
         file = {
-          enable = true,
+          enable = false,
           color = true,
         },
         folder = {
@@ -423,9 +423,9 @@ local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
       padding = " ",
       symlink_arrow = " ➛ ",
       show = {
-        file = true,
+        file = false,
         folder = true,
-        folder_arrow = true,
+        folder_arrow = false,
         git = true,
         modified = true,
         diagnostics = true,
@@ -492,10 +492,10 @@ local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
       max = vim.diagnostic.severity.ERROR,
     },
     icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
+      hint = "H",
+      info = "I",
+      warning = "W",
+      error = "E",
     },
   },
   modified = {
